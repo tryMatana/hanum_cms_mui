@@ -8,17 +8,24 @@ import { ErrorBoundary } from './routes/components';
 
 // ----------------------------------------------------------------------
 
-const router = createBrowserRouter([
-  {
-    Component: () => (
-      <App>
-        <Outlet />
-      </App>
-    ),
-    errorElement: <ErrorBoundary />,
-    children: routesSection,
-  },
-]);
+const basePathWithoutTrailingSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const basename =
+  basePathWithoutTrailingSlash === '' ? undefined : basePathWithoutTrailingSlash;
+
+const router = createBrowserRouter(
+  [
+    {
+      Component: () => (
+        <App>
+          <Outlet />
+        </App>
+      ),
+      errorElement: <ErrorBoundary />,
+      children: routesSection,
+    },
+  ],
+  { basename }
+);
 
 const root = createRoot(document.getElementById('root')!);
 

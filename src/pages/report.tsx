@@ -1,4 +1,5 @@
 import { CONFIG } from 'src/config-global';
+
 import { ReportView } from 'src/sections/report/view';
 
 // ----------------------------------------------------------------------

@@ -8,8 +8,9 @@ import { ErrorBoundary } from './routes/components';
 
 // ----------------------------------------------------------------------
 
-const normalizedBasePath = import.meta.env.BASE_URL.replace(/\/$/, '');
-const basename = normalizedBasePath === '' ? undefined : normalizedBasePath;
+const basePathWithoutTrailingSlash = import.meta.env.BASE_URL.replace(/\/$/, '');
+const basename =
+  basePathWithoutTrailingSlash === '' ? undefined : basePathWithoutTrailingSlash;
 
 const router = createBrowserRouter(
   [

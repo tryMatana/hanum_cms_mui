@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - copilot/auto-preview-deploy-frontend
+      - copilot/**
   workflow_dispatch:
 
 permissions:

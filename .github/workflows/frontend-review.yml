@@ -1,0 +1,34 @@
+name: Frontend Candidate Review
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Type Check
+        run: npx tsc --noEmit
+
+      - name: Production Build
+        run: npm run build
